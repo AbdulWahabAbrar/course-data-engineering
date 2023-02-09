@@ -38,7 +38,7 @@ def write_local(df: pd.DataFrame, color: str, dataset_file: str) -> Path:
 def write_gcs(path: Path) -> None:
     """Upload local CSV file to GCS"""
     gcs_block = GcsBucket.load("zoom-gcs")
-    gcs_block.upload_from_path(from_path=path, to_path="green_trip_data_jan_2020/green_tripdata_2020-01.csv")
+    gcs_block.upload_from_path(from_path=path, to_path=path)
     return
 
 
@@ -47,7 +47,7 @@ def etl_web_to_gcs() -> None:
     """The main ETL function"""
     color = "green"
     year = 2020
-    month = 1
+    month = 11
     dataset_file = f"{color}_tripdata_{year}-{month:02}"
     dataset_url = f"https://github.com/DataTalksClub/nyc-tlc-data/releases/download/{color}/{dataset_file}.csv.gz"
 
